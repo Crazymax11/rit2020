@@ -7,7 +7,9 @@ export interface SearchResult {
 
 export class SearchService {
   async search(search: string): Promise<SearchResult> {
-    const { data, status } = await axios.get(`/api/v1/items?search=${search}`);
+    const { data, status } = await axios.get(`/api/v1/search`, {
+      params: { search },
+    });
 
     if (status !== 200) {
       throw new Error("что-то пошло не так");
